@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col-md-12">
+        <h2>List</h2>
+        {% if allow_list %}
+        <table class="table table-hover">
+            <thead>
+                <tr class="info">
+                    <th>工號</th>
+                    <th>部門</th>
+                    <th>姓名</th>
+                    <th>申請理由</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for gv in allow_list %}
+                <tr class="animate fadeInUp">
+                    <th scope=row><a href="{% url 'youtube:detail' gv.employeeid %}">{{ gv.employeeid }}</a></th>
+                    <td>{{ gv.employeedept }}</td>
+                    <td>{{ gv.employeename }}</td>
+                    <td>{{ gv.purpose }}</td>
+                    <td>
+                    {% if user.username == "vincent.pan" %}
+                    <a href="{% url 'youtube:remove' gv.employeeid %}" onclick="return confirm('確認刪除');"><span type="span" class="label label-danger"><i class="fa fa-remove"></i>刪除資料</span></a>
+                    {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p><span type="span" class="label label-danger">Oops</span>還沒有申請紀錄！</p>
+        {% endif%}
+    </div>
+{% endblock %}                         

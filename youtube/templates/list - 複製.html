@@ -1,0 +1,165 @@
+{% load staticfiles %}
+<!-- === BEGIN HEADER === -->
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <head>
+        <!-- Title -->
+        <title>CHROMA - Youtube開放調查</title>
+        <!-- Meta -->
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <!-- Favicon -->
+        <link href="favicon.ico" rel="shortcut icon">
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+        <!-- Template CSS -->
+        <link rel="stylesheet" href="{% static "css/animate.css" %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static "css/font-awesome.css" %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static "css/nexus.css" %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static "css/responsive.css" %}" rel="stylesheet">
+        <!-- Google Fonts-->
+        <link href="http://fonts.googleapis.com/css?family=Roboto:400,300" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="body_bg">
+            <div id="pre_header" class="container">
+                <div class="row margin-top-10 visible-lg">
+                    <div class="col-md-6">
+                        <p>
+                            <strong>分機:</strong>8128 景文</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <p>
+                            <strong>Email:</strong><a href="mailto:vincent.pan@chroma.com.tw">vincent.pan@chroma.com.tw</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="primary-container-group">
+                <!-- Background -->
+                <div class="primary-container-background">
+                    <div class="primary-container"></div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--End Background -->
+                <div class="primary-container">
+                    <div id="header" class="container">
+                        <div class="row">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="index.html" title="">
+                                    <img src="{% static "img/logo.png" %}" alt="Logo" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Top Menu -->
+                    <div id="hornav" class="container no-padding">
+                        <div class="row">
+                            <div class="col-md-12 no-padding">
+                                <div class="pull-right visible-lg">
+                                    <ul id="hornavmenu" class="nav navbar-nav">
+                                        <li>
+                                            <span class="fa-th">Menu</span>
+                                            <ul>
+                                                <li>
+                                                    <a href="/youtube/list">申請名單</a>
+                                                </li>
+                                                <li>
+                                                    <a href="submit.html">提出申請</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="/youtube/" class="fa-home">Home</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Top Menu -->
+                    <!-- === END HEADER === -->
+                    <!-- === BEGIN CONTENT === -->
+                    <div id="content">
+                        <div class="container">
+                            <div class="row margin-vert-30">
+                                <!-- Main Column -->
+                                <div class="col-md-12">
+                                    <h2>申請名單</h2>
+                                    {% if allow_list %}
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr class="info">
+                                                <th>工號</th>
+                                                <th>部門</th>
+                                                <th>姓名</th>
+                                                <th>申請理由</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for gv in allow_list %}
+                                            <tr class="animate fadeInUp">
+                                                <th scope=row><a href="{% url 'youtube:detail' gv.employeeid %}">{{ gv.employeeid }}</a></th>
+                                                <td>{{ gv.employeedept }}</td>
+                                                <td>{{ gv.employeename }}</td>
+                                                <td>{{ gv.purpose }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    {% else %}
+                                        <p><span type="span" class="label label-danger">Oops</span>還沒有申請紀錄！</p>
+                                    {% endif%}
+                                    </table>
+                                </div>
+                                <!-- End Main Column -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- === END CONTENT === -->
+            <!-- === BEGIN FOOTER === -->
+            <!-- Footer Menu -->
+            <div id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div id="copyright" class="col-md-4">
+                            <p>(c) 2016 Vincent Pan</p>
+                        </div>
+                        <div id="footermenu" class="col-md-8">
+                            <ul class="list-unstyled list-inline pull-right">
+                                <li>
+                                    <a href="#" target="_blank">Youtube開放調查</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Menu -->
+            <!-- JS -->
+            <script type="text/javascript" src="{% static "js/jquery.min.js" %}" type="text/javascript"></script>
+            <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}" type="text/javascript"></script>
+            <script type="text/javascript" src="{% static "js/scripts.js" %}"></script>
+            <!-- Isotope - Portfolio Sorting -->
+            <script type="text/javascript" src="{% static "js/jquery.isotope.js" %}" type="text/javascript"></script>
+            <!-- Mobile Menu - Slicknav -->
+            <script type="text/javascript" src="{% static "js/jquery.slicknav.js" %}" type="text/javascript"></script>
+            <!-- Animate on Scroll-->
+            <script type="text/javascript" src="{% static "js/jquery.visible.js" %}" charset="utf-8"></script>
+            <!-- Sticky Div -->
+            <script type="text/javascript" src="{% static "js/jquery.sticky.js" %}" charset="utf-8"></script>
+            <!-- Slimbox2-->
+            <script type="text/javascript" src="{% static "js/slimbox2.js" %}" charset="utf-8"></script>
+            <!-- Modernizr -->
+            <script src="{% static "js/modernizr.custom.js" %}" type="text/javascript"></script>
+            <!-- End JS -->
+    </body>
+</html>
+<!-- === END FOOTER === -->

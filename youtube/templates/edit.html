@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col-md-12">
+        <h2>Edit</h2>
+        {% if form.errors %}
+        <p><span type="span" class="label label-danger">注意</span>尚有欄位未填寫</p>
+        {% else %}
+        <p><span type="span" class="label label-info">提醒</span>以下所有欄位必填</p>
+        {% endif %}
+        <form class="signup-page" method="post">{% csrf_token %}
+    		<label>工號：</label>
+            {{ form.employeeid.errors }}
+            <input class="form-control margin-bottom-20" id="employeeid" maxlength="10" name="employeeid" type="text" value="{{ form.employeeid.value }}">
+            <label>部門：</label>
+            {{ form.employeedept.errors }}
+            <input class="form-control margin-bottom-20" id="employeedept" maxlength="10" name="employeedept" type="text" value="{{ form.employeedept.value }}">
+            <label>姓名：</label>
+            {{ form.employeename.errors }}
+            <input class="form-control margin-bottom-20" id="employeename" maxlength="10" name="employeename" type="text" value="{{ form.employeename.value }}">
+            <label>理由：</label>
+            {{ form.purpose.errors }}
+            <textarea class="form-control margin-bottom-20" cols="40" id="purpose" name="purpose" rows="10">{{ form.purpose.value }}</textarea>
+    		<hr>
+            <button class="btn btn-info" type="submit">送出</button>
+		</form>
+    </div>
+{% endblock %}

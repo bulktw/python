@@ -1,0 +1,9 @@
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+#Python
+*.pyc
+__pycache__
+db.sqlite3
